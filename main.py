@@ -12,7 +12,6 @@ from kyberswap_client import kyberswap_quote
 from telegram_bot import send_message
 
 CHECK_INTERVAL = 10
-
 TRADE_SIZE_USDC = 5000
 SMALL_TEST_USDC = 1000
 
@@ -32,37 +31,29 @@ PLACES = [
 send_message("🤖 Polygon multi-DEX arb bot запущен")
 
 
-def save_stats(symbol, best_buy, best_sell, backup_sell, buy_slippage, token_amount):
+def now():
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+
+def save_row(row):
+    columns = [
+        "time", "token", "status", "reason", "volume_usdc",
+        "buy_place", "token_amount", "buy_slippage",
+        "sell_place", "usdc_back", "sell_slippage",
+        "profit_usd", "profit_percent",
+        "backup_place", "backup_usdc_back", "backup_profit_percent",
+        "buy_dexes_checked", "sell_dexes_checked",
+    ]
+
     file_exists = os.path.exists(STATS_FILE)
 
     with open(STATS_FILE, "a", newline="", encoding="utf-8") as file:
-        writer = csv.writer(file)
+        writer = csv.DictWriter(file, fieldnames=columns)
 
         if not file_exists:
-            writer.writerow([
-                "time", "token", "volume_usdc",
-                "buy_place", "token_amount", "buy_slippage",
-                "sell_place", "usdc_back", "sell_slippage",
-                "profit_usd", "profit_percent",
-                "backup_place", "backup_usdc_back", "backup_profit_percent"
-            ])
+            writer.writeheader()
 
-        writer.writerow([
-            datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            symbol,
-            TRADE_SIZE_USDC,
-            best_buy["place"]["name"],
-            token_amount,
-            round(buy_slippage, 4),
-            best_sell["place"]["name"],
-            round(best_sell["usdc_back"], 4),
-            round(best_sell["sell_slippage"], 4),
-            round(best_sell["profit"], 4),
-            round(best_sell["profit_percent"], 4),
-            backup_sell["place"]["name"],
-            round(backup_sell["usdc_back"], 4),
-            round(backup_sell["profit_percent"], 4),
-        ])
+        writer.writerow({col: row.get(col, "") for col in columns})
 
 
 def quote_place(place, input_token, output_token, amount):
@@ -112,15 +103,34 @@ def check_token(token):
     large_usdc_amount = int(TRADE_SIZE_USDC * 10 ** USDC["decimals"])
     small_usdc_amount = int(SMALL_TEST_USDC * 10 ** USDC["decimals"])
 
-    # BUY
     buy_quotes = parallel_quotes(USDC, token, large_usdc_amount, PLACES)
 
     if not buy_quotes:
+        save_row({
+            "time": now(),
+            "token": symbol,
+            "status": "skipped",
+            "reason": "no_buy_quotes",
+            "volume_usdc": TRADE_SIZE_USDC,
+            "buy_dexes_checked": 0,
+        })
         return None
 
     best_buy = max(buy_quotes, key=lambda x: x["out_amount"])
 
-    small_buy_out, _ = best_buy["place"]["quote"](USDC, token, small_usdc_amount)
+    try:
+        small_buy_out, _ = best_buy["place"]["quote"](USDC, token, small_usdc_amount)
+    except Exception as error:
+        save_row({
+            "time": now(),
+            "token": symbol,
+            "status": "skipped",
+            "reason": f"buy_slippage_error: {error}",
+            "volume_usdc": TRADE_SIZE_USDC,
+            "buy_place": best_buy["place"]["name"],
+            "buy_dexes_checked": len(buy_quotes),
+        })
+        return None
 
     buy_slippage = calc_slippage(
         small_buy_out,
@@ -129,11 +139,24 @@ def check_token(token):
         large_usdc_amount,
     )
 
+    token_amount = best_buy["out_amount"] / 10 ** token["decimals"]
+
     if buy_slippage > BUY_SLIPPAGE_LIMIT:
         print(f"{symbol}: skip, buy slippage {buy_slippage:.2f}%")
+
+        save_row({
+            "time": now(),
+            "token": symbol,
+            "status": "skipped",
+            "reason": "high_buy_slippage",
+            "volume_usdc": TRADE_SIZE_USDC,
+            "buy_place": best_buy["place"]["name"],
+            "token_amount": token_amount,
+            "buy_slippage": round(buy_slippage, 4),
+            "buy_dexes_checked": len(buy_quotes),
+        })
         return None
 
-    # SELL
     sell_places = [
         place for place in PLACES
         if place["name"] != best_buy["place"]["name"]
@@ -142,6 +165,18 @@ def check_token(token):
     sell_results = parallel_quotes(token, USDC, best_buy["out_amount"], sell_places)
 
     if len(sell_results) < 2:
+        save_row({
+            "time": now(),
+            "token": symbol,
+            "status": "skipped",
+            "reason": "not_enough_sell_quotes",
+            "volume_usdc": TRADE_SIZE_USDC,
+            "buy_place": best_buy["place"]["name"],
+            "token_amount": token_amount,
+            "buy_slippage": round(buy_slippage, 4),
+            "buy_dexes_checked": len(buy_quotes),
+            "sell_dexes_checked": len(sell_results),
+        })
         return None
 
     half_token_amount = best_buy["out_amount"] // 2
@@ -193,6 +228,18 @@ def check_token(token):
         })
 
     if len(sell_quotes) < 2:
+        save_row({
+            "time": now(),
+            "token": symbol,
+            "status": "skipped",
+            "reason": "sell_slippage_filtered_all",
+            "volume_usdc": TRADE_SIZE_USDC,
+            "buy_place": best_buy["place"]["name"],
+            "token_amount": token_amount,
+            "buy_slippage": round(buy_slippage, 4),
+            "buy_dexes_checked": len(buy_quotes),
+            "sell_dexes_checked": len(sell_results),
+        })
         return None
 
     sell_quotes.sort(key=lambda x: x["profit_percent"], reverse=True)
@@ -200,29 +247,45 @@ def check_token(token):
     best_sell = sell_quotes[0]
     backup_sell = sell_quotes[1]
 
-    token_amount = best_buy["out_amount"] / 10 ** token["decimals"]
-
-    # сохраняем статистику
-    save_stats(symbol, best_buy, best_sell, backup_sell, buy_slippage, token_amount)
+    save_row({
+        "time": now(),
+        "token": symbol,
+        "status": "ok",
+        "reason": "",
+        "volume_usdc": TRADE_SIZE_USDC,
+        "buy_place": best_buy["place"]["name"],
+        "token_amount": token_amount,
+        "buy_slippage": round(buy_slippage, 4),
+        "sell_place": best_sell["place"]["name"],
+        "usdc_back": round(best_sell["usdc_back"], 4),
+        "sell_slippage": round(best_sell["sell_slippage"], 4),
+        "profit_usd": round(best_sell["profit"], 4),
+        "profit_percent": round(best_sell["profit_percent"], 4),
+        "backup_place": backup_sell["place"]["name"],
+        "backup_usdc_back": round(backup_sell["usdc_back"], 4),
+        "backup_profit_percent": round(backup_sell["profit_percent"], 4),
+        "buy_dexes_checked": len(buy_quotes),
+        "sell_dexes_checked": len(sell_results),
+    })
 
     text = (
         f"🔹 TOKEN: {symbol}\n"
         f"{symbol}/USDC\n"
         f"Время: {check_time}\n"
         f"Объём: ${TRADE_SIZE_USDC}\n\n"
-
         f"1️⃣ Купить: {best_buy['place']['name']}\n"
         f"Получим токенов: {token_amount:.6f}\n"
         f"Buy slippage: {buy_slippage:.2f}%\n"
         f"{best_buy['place']['link']}\n\n"
-
         f"2️⃣ Продать лучший: {best_sell['place']['name']}\n"
         f"Вернётся: ${best_sell['usdc_back']:.2f}\n"
         f"Sell slippage: {best_sell['sell_slippage']:.2f}%\n"
+        f"Профит: ${best_sell['profit']:.2f}\n"
         f"Профит: {best_sell['profit_percent']:.2f}%\n"
         f"{best_sell['place']['link']}\n\n"
-
         f"3️⃣ Backup: {backup_sell['place']['name']}\n"
+        f"Вернётся: ${backup_sell['usdc_back']:.2f}\n"
+        f"Профит: {backup_sell['profit_percent']:.2f}%\n"
         f"{backup_sell['place']['link']}"
     )
 
@@ -247,6 +310,14 @@ while True:
 
         except Exception as error:
             print(f"Ошибка по {token['symbol']}:", error)
+
+            save_row({
+                "time": now(),
+                "token": token["symbol"],
+                "status": "error",
+                "reason": str(error),
+                "volume_usdc": TRADE_SIZE_USDC,
+            })
 
     print("Пауза...")
     time.sleep(CHECK_INTERVAL)
