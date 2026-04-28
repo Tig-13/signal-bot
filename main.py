@@ -13,7 +13,7 @@ from telegram_bot import send_message
 
 CHECK_INTERVAL = 10
 
-TRADE_SIZE_USDC = 10000
+TRADE_SIZE_USDC = 5000
 SMALL_TEST_USDC = 1000
 
 MIN_NET_DIFF_PERCENT = 0.5

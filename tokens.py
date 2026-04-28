@@ -51,4 +51,17 @@ TOKENS = [
     # Доп ликвидные
     # {"symbol": "FXS", "address": "0x3e121107f6f22da4911079845a470757af4e1a1b", "decimals": 18},
     {"symbol": "LDO", "address": "0xc3c7d422809852031b44ab29eec9f1eff2a58756", "decimals": 18},
+    {"symbol": "FRAX", "address": "0x45c32fa6df82ead1e2ef74d17b76547eddfaff89", "decimals": 18},
+
+    {"symbol": "QUICK", "address": "0x831753dd7087cac61ab5644b308642cc1c33dc13", "decimals": 18},
+    {"symbol": "GHST", "address": "0x385Eeac5cB85A38A9a4e1F6F5A4F7C7E1A5FfA56", "decimals": 18},
+
+    {"symbol": "DPI", "address": "0x85955046df4668e1dd369d2de9f3aeb98dd2a369", "decimals": 18},
+    {"symbol": "STG", "address": "0x2f6f07cdcf3588944bf4c42ac74ff24bf56e7590", "decimals": 18},
+
+    {"symbol": "MKR", "address": "0x6f7C932e7684666C9fd1d44527765433e01fF61d", "decimals": 18},
+    {"symbol": "COMP", "address": "0x8505b9d2254a4afcb3e0c517f2c66d3f4eaf5c9a", "decimals": 18},
+
+    {"symbol": "SUSHI.e", "address": "0x0b3f868e0be5597d5db7feb59e1cadbb0fdda50a", "decimals": 18},
+    {"symbol": "WOO", "address": "0x1b815d120b3ef02039ee11dc2d33de7aa4a8c603", "decimals": 18},
 ]
