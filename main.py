@@ -1,3 +1,4 @@
+import html
 import time
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -347,25 +348,27 @@ def check_token_size(token, trade_size_usdc):
         "sell_dexes_checked": len(sell_results),
     })
 
+    highlight = "<b>🔥 HIGH PROFIT</b>\n" if best_sell['profit_percent'] > 0.9 else ""
+
     text = (
-        f"🔹 TOKEN: {symbol}\n"
-        f"{symbol}/USDC\n"
-        f"Время: {check_time}\n"
-        f"Объём: ${trade_size_usdc}\n\n"
-        f"1️⃣ Купить: {best_buy['place']['name']}\n"
-        f"Получим токенов: {token_amount:.6f}\n"
+        f"{highlight}🔹 TOKEN: <b>{html.escape(symbol)}</b>\n"
+        f"<b>{html.escape(symbol)}</b>/USDC\n"
+        f"Время: {html.escape(check_time)}\n"
+        f"Объём: <b>${trade_size_usdc:.2f}</b>\n\n"
+        f"1️⃣ Купить: {html.escape(best_buy['place']['name'])}\n"
+        f"Получим токенов: <b>{token_amount:.6f} {html.escape(symbol)}</b>\n"
         f"Buy slippage: {buy_slippage:.2f}%\n"
-        f"{best_buy['place']['link']}\n\n"
-        f"2️⃣ Продать лучший: {best_sell['place']['name']}\n"
-        f"Вернётся: ${best_sell['usdc_back']:.2f}\n"
+        f"{html.escape(best_buy['place']['link'])}\n\n"
+        f"2️⃣ Продать лучший: {html.escape(best_sell['place']['name'])}\n"
+        f"Вернётся: <b>${best_sell['usdc_back']:.2f}</b>\n"
         f"Sell slippage: {best_sell['sell_slippage']:.2f}%\n"
-        f"Профит: ${best_sell['profit']:.2f}\n"
+        f"Профит: <b>${best_sell['profit']:.2f}</b>\n"
         f"Профит: {best_sell['profit_percent']:.2f}%\n"
-        f"{best_sell['place']['link']}\n\n"
-        f"3️⃣ Backup: {backup_sell['place']['name']}\n"
-        f"Вернётся: ${backup_sell['usdc_back']:.2f}\n"
+        f"{html.escape(best_sell['place']['link'])}\n\n"
+        f"3️⃣ Backup: {html.escape(backup_sell['place']['name'])}\n"
+        f"Вернётся: <b>${backup_sell['usdc_back']:.2f}</b>\n"
         f"Профит: {backup_sell['profit_percent']:.2f}%\n"
-        f"{backup_sell['place']['link']}"
+        f"{html.escape(backup_sell['place']['link'])}"
     )
 
     return text, best_sell["profit_percent"]
