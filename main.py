@@ -26,6 +26,9 @@ MIN_NET_DIFF_PERCENT = 0.5
 BUY_SLIPPAGE_LIMIT = 3.0
 SELL_SLIPPAGE_LIMIT = 3.0
 
+TIMEOUT_PER_DEX = 5
+TIMEOUT_TOTAL = 15
+
 TOKEN_WORKERS = 3
 STOP_BOT = False
 
@@ -73,14 +76,14 @@ def parallel_quotes(input_token, output_token, amount, places, context=""):
             for place in places
         }
 
-        for future in as_completed(futures):
+        for future in as_completed(futures, timeout=TIMEOUT_TOTAL):
             if STOP_BOT:
                 break
 
             place = futures[future]
 
             try:
-                result = future.result()
+                result = future.result(timeout=TIMEOUT_PER_DEX)
                 results.append(result)
 
                 log_debug(
@@ -90,6 +93,17 @@ def parallel_quotes(input_token, output_token, amount, places, context=""):
                     f"amount_human={amount / 10 ** input_token['decimals']} | "
                     f"out_raw={result['out_amount']}"
                 )
+
+            except TimeoutError:
+                msg = (
+                    f"TIMEOUT | context={context} | "
+                    f"dex={place['name']} | "
+                    f"pair={input_token['symbol']}->{output_token['symbol']} | "
+                    f"amount_human={amount / 10 ** input_token['decimals']}"
+                )
+
+                print("quote timeout:", msg)
+                log_error(msg)
 
             except Exception as error:
                 msg = (
@@ -103,6 +117,10 @@ def parallel_quotes(input_token, output_token, amount, places, context=""):
 
                 print("quote error:", msg)
                 log_error(msg)
+
+    except TimeoutError:
+        print(f"Total timeout for {context}")
+        log_error(f"TOTAL_TIMEOUT | context={context}")
 
     except KeyboardInterrupt:
         executor.shutdown(wait=False, cancel_futures=True)
