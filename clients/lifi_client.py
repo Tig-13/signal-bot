@@ -33,7 +33,7 @@ def lifi_quote(input_token, output_token, amount):
         "slippage": "0.005",
     }
 
-    response = requests.get(LIFI_URL, params=params, timeout=20)
+    response = requests.get(LIFI_URL, params=params, timeout=7)
 
     if response.status_code == 429:
         raise Exception("rate limit")

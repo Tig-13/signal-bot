@@ -2,7 +2,7 @@ import os
 import requests
 from dotenv import load_dotenv
 from tokens import CHAIN_ID, USDC, WMATIC
-from odos_client import get_token_to_usdc_price
+from clients.odos_client import get_token_to_usdc_price
 
 load_dotenv()
 
@@ -26,7 +26,7 @@ def get_0x_token_to_usdc_price(token, trade_size_usdc=100):
         "0x-version": "v2",
     }
 
-    response = requests.get(ZEROX_PRICE_URL, params=params, headers=headers, timeout=20)
+    response = requests.get(ZEROX_PRICE_URL, params=params, headers=headers, timeout=7)
     data = response.json()
 
     if "buyAmount" not in data:
@@ -55,7 +55,7 @@ def zerox_quote(input_token, output_token, amount):
         "0x-version": "v2",
     }
 
-    response = requests.get(ZEROX_PRICE_URL, params=params, headers=headers, timeout=20)
+    response = requests.get(ZEROX_PRICE_URL, params=params, headers=headers, timeout=7)
     data = response.json()
 
     if "buyAmount" not in data:

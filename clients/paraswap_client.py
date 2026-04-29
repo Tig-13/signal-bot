@@ -17,7 +17,7 @@ def paraswap_quote(input_token, output_token, amount):
         "version": "5",
     }
 
-    response = requests.get(PARASWAP_PRICE_URL, params=params, timeout=20)
+    response = requests.get(PARASWAP_PRICE_URL, params=params, timeout=7)
     data = response.json()
 
     if "priceRoute" not in data:

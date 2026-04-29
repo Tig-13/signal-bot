@@ -11,7 +11,7 @@ def okx_quote(input_token, output_token, amount):
         "amount": str(amount),
     }
 
-    response = requests.get(OKX_URL, params=params, timeout=20)
+    response = requests.get(OKX_URL, params=params, timeout=7)
 
     if response.status_code != 200:
         raise Exception(f"OKX HTTP {response.status_code}")

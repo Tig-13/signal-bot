@@ -1,0 +1,86 @@
+[2026-04-29 13:02:55] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:03] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:11] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:17] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:18] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:25] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:27] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:30] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:32] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:34] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:39] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:40] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:40] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:44] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:46] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:49] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:52] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:03:57] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:04:01] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:04:06] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:04:06] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:04:12] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:04:13] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:04:22] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:05:02] quote error: UniswapV3: UniswapV3 no route
+[2026-04-29 13:05:11] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:05:11] quote error: Odos: Odos error: {'detail': 'Routing unavailable for token [0x385eEac5CB85A38A9a4E1F6F5A4f7C7E1a5ffA56]', 'traceId': '893537b7-d1f0-4a60-8ffa-48a1aa4ee3d0', 'errorCode': 4016}
+[2026-04-29 13:05:11] quote error: KyberSwap: KyberSwap error: {'code': 4011, 'message': 'token not found', 'details': None, 'requestId': '1f045fcd-c4c5-482f-a2eb-98cb13f28a86'}
+[2026-04-29 13:05:11] quote error: 0x/Matcha: 0x error: {'liquidityAvailable': False, 'zid': '0x984bfdc77bcee0fc8e468140'}
+[2026-04-29 13:05:11] quote error: UniswapV3: UniswapV3 no route
+[2026-04-29 13:05:16] quote error: UniswapV3: UniswapV3 no route
+[2026-04-29 13:05:17] quote error: 0x/Matcha: 0x error: {'name': 'BUY_TOKEN_NOT_AUTHORIZED_FOR_TRADE', 'message': 'The buy token is not authorized for trade due to legal restrictions', 'data': {'zid': '0x50c674d9cb6ac804b627396e'}}
+[2026-04-29 13:05:18] quote error: Sushi: HTTPSConnectionPool(host='api.sushi.com', port=443): Read timed out. (read timeout=7)
+[2026-04-29 13:05:19] quote error: Odos: Odos error: {'detail': 'Routing unavailable for token [0x385eEac5CB85A38A9a4E1F6F5A4f7C7E1a5ffA56]', 'traceId': '622a3bee-213c-4d0a-9de5-13579e8e8e8a', 'errorCode': 4016}
+[2026-04-29 13:05:19] quote error: KyberSwap: KyberSwap error: {'code': 4011, 'message': 'token not found', 'details': None, 'requestId': 'f035fa56-5c45-4a88-b1fc-cad1ff46b2cb'}
+[2026-04-29 13:05:19] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:05:20] quote error: 0x/Matcha: 0x error: {'liquidityAvailable': False, 'zid': '0xf9329f34f3ea4898b67aeecc'}
+[2026-04-29 13:05:20] quote error: UniswapV3: UniswapV3 no route
+[2026-04-29 13:05:20] quote error: 0x/Matcha: 0x error: {'name': 'SELL_TOKEN_NOT_AUTHORIZED_FOR_TRADE', 'message': 'The sell token is not authorized for trade due to legal restrictions', 'data': {'zid': '0x34f7f01753d2efc8c70d7aa8'}}
+[2026-04-29 13:05:26] quote error: Sushi: HTTPSConnectionPool(host='api.sushi.com', port=443): Read timed out. (read timeout=7)
+[2026-04-29 13:05:27] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:05:27] quote error: Odos: Odos error: {'detail': 'Routing unavailable for token [0x385eEac5CB85A38A9a4E1F6F5A4f7C7E1a5ffA56]', 'traceId': 'd8e5480d-955f-4169-9d20-20c30454e256', 'errorCode': 4016}
+[2026-04-29 13:05:28] quote error: 0x/Matcha: 0x error: {'liquidityAvailable': False, 'zid': '0x6d24ccae9427749c4b0c615b'}
+[2026-04-29 13:05:28] quote error: UniswapV3: UniswapV3 no route
+[2026-04-29 13:05:28] quote error: KyberSwap: KyberSwap error: {'code': 4011, 'message': 'token not found', 'details': None, 'requestId': '5323a909-6a88-48e5-944c-1c4944f52715'}
+[2026-04-29 13:05:28] quote error: 0x/Matcha: 0x error: {'name': 'BUY_TOKEN_NOT_AUTHORIZED_FOR_TRADE', 'message': 'The buy token is not authorized for trade due to legal restrictions', 'data': {'zid': '0xc1065e5142b5835d6ac5bf90'}}
+[2026-04-29 13:05:31] quote error: UniswapV3: UniswapV3 no route
+[2026-04-29 13:05:33] quote error: 0x/Matcha: 0x error: {'name': 'BUY_TOKEN_NOT_AUTHORIZED_FOR_TRADE', 'message': 'The buy token is not authorized for trade due to legal restrictions', 'data': {'zid': '0x93246b108a2a94e3984330dd'}}
+[2026-04-29 13:05:34] quote error: Sushi: HTTPSConnectionPool(host='api.sushi.com', port=443): Read timed out. (read timeout=7)
+[2026-04-29 13:05:35] quote error: Odos: Odos error: {'detail': 'Routing unavailable for token [0x385eEac5CB85A38A9a4E1F6F5A4f7C7E1a5ffA56]', 'traceId': '483ad764-6bb5-45b9-9143-9e70d218c074', 'errorCode': 4016}
+[2026-04-29 13:05:35] quote error: KyberSwap: KyberSwap error: {'code': 4011, 'message': 'token not found', 'details': None, 'requestId': '265a9685-7139-4663-8bd8-f86a6c636d95'}
+[2026-04-29 13:05:35] quote error: UniswapV3: UniswapV3 no route
+[2026-04-29 13:05:35] quote error: 0x/Matcha: 0x error: {'liquidityAvailable': False, 'zid': '0x2c86d24ac49913c0a4a8391b'}
+[2026-04-29 13:05:36] quote error: 0x/Matcha: 0x error: {'name': 'BUY_TOKEN_NOT_AUTHORIZED_FOR_TRADE', 'message': 'The buy token is not authorized for trade due to legal restrictions', 'data': {'zid': '0xa307744a1cf354e6b02c6b06'}}
+[2026-04-29 13:05:36] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:05:42] quote error: Sushi: HTTPSConnectionPool(host='api.sushi.com', port=443): Read timed out. (read timeout=7)
+[2026-04-29 13:05:44] quote error: UniswapV3: UniswapV3 no route
+[2026-04-29 13:05:46] quote error: UniswapV3: UniswapV3 no route
+[2026-04-29 13:05:53] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:05:53] quote error: Odos: Odos error: {'detail': 'Routing unavailable for token [0x8505b9d2254A4afCb3E0C517f2c66d3F4eaf5C9a]', 'traceId': '29c92b67-7608-4eb7-b54c-8c78f816b2ec', 'errorCode': 4016}
+[2026-04-29 13:05:53] quote error: 0x/Matcha: 0x error: {'liquidityAvailable': False, 'zid': '0x685fca5b234e2577ebed8d2d'}
+[2026-04-29 13:05:53] quote error: Sushi: Sushi HTTP 422: {"type":"https://docs.sushi.com/api/errors/validation","title":"Validation Error","detail":"The request is invalid.","status":422,"code":"422-01","err
+[2026-04-29 13:05:53] quote error: KyberSwap: KyberSwap error: {'code': 4011, 'message': 'token not found', 'details': None, 'requestId': '01bedb6a-df14-49f3-b558-bde0fdc04b32'}
+[2026-04-29 13:05:53] quote error: UniswapV3: UniswapV3 no route
+[2026-04-29 13:05:55] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:05:55] quote error: Odos: Odos error: {'detail': 'Routing unavailable for token [0x8505b9d2254A4afCb3E0C517f2c66d3F4eaf5C9a]', 'traceId': '85c0c641-2508-4b36-9656-2cbe9888dcb8', 'errorCode': 4016}
+[2026-04-29 13:05:55] quote error: KyberSwap: KyberSwap error: {'code': 4011, 'message': 'token not found', 'details': None, 'requestId': '90ce19df-43ec-4090-b84c-f2fc4bf66b3a'}
+[2026-04-29 13:05:55] quote error: Sushi: Sushi HTTP 422: {"type":"https://docs.sushi.com/api/errors/validation","title":"Validation Error","detail":"The request is invalid.","status":422,"code":"422-01","err
+[2026-04-29 13:05:55] quote error: UniswapV3: UniswapV3 no route
+[2026-04-29 13:05:55] quote error: 0x/Matcha: 0x error: {'liquidityAvailable': False, 'zid': '0x27c23a5a1ad9dd8205567c4f'}
+[2026-04-29 13:05:56] quote error: UniswapV3: UniswapV3 no route
+[2026-04-29 13:05:57] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:05:57] quote error: Odos: Odos error: {'detail': 'Routing unavailable for token [0x8505b9d2254A4afCb3E0C517f2c66d3F4eaf5C9a]', 'traceId': '570325a6-a873-403a-a857-77c237dea3ae', 'errorCode': 4016}
+[2026-04-29 13:05:57] quote error: Sushi: Sushi HTTP 422: {"type":"https://docs.sushi.com/api/errors/validation","title":"Validation Error","detail":"The request is invalid.","status":422,"code":"422-01","err
+[2026-04-29 13:05:57] quote error: KyberSwap: KyberSwap error: {'code': 4011, 'message': 'token not found', 'details': None, 'requestId': 'e986681a-2546-4445-82ff-b67fcf4ceae7'}
+[2026-04-29 13:05:57] quote error: UniswapV3: UniswapV3 no route
+[2026-04-29 13:05:57] quote error: 0x/Matcha: 0x error: {'liquidityAvailable': False, 'zid': '0x8bc96c2ef888f515de537d80'}
+[2026-04-29 13:05:58] quote error: Sushi: Sushi HTTP 422: {"type":"https://docs.sushi.com/api/errors/validation","title":"Validation Error","detail":"The request is invalid.","status":422,"code":"422-01","err
+[2026-04-29 13:05:58] quote error: Odos: Odos error: {'detail': 'Routing unavailable for token [0x8505b9d2254A4afCb3E0C517f2c66d3F4eaf5C9a]', 'traceId': '1ce4f396-0fec-4d21-8e78-330da8dc4fc7', 'errorCode': 4016}
+[2026-04-29 13:05:59] quote error: KyberSwap: KyberSwap error: {'code': 4011, 'message': 'token not found', 'details': None, 'requestId': '7220fd51-992e-4fa5-92b5-1b84000533ea'}
+[2026-04-29 13:05:59] quote error: 0x/Matcha: 0x error: {'liquidityAvailable': False, 'zid': '0x7afbd36d38fe08f432da90aa'}
+[2026-04-29 13:05:59] quote error: QuickSwap: QuickSwap no route: ('execution reverted', '0x')
+[2026-04-29 13:05:59] quote error: UniswapV3: UniswapV3 no route
+[2026-04-29 13:06:10] quote error: UniswapV3: UniswapV3 no route
+[2026-04-29 13:06:31] quote error: UniswapV3: UniswapV3 no route
+[2026-04-29 13:07:04] Bot stopped by user

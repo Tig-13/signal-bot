@@ -19,7 +19,7 @@ def get_token_to_usdc_price(token, trade_size_usdc=100):
         "slippageLimitPercent": 0.5,
     }
 
-    response = requests.post(ODOS_QUOTE_URL, json=payload, timeout=20)
+    response = requests.post(ODOS_QUOTE_URL, json=payload, timeout=7)
     data = response.json()
 
     if "outAmounts" not in data:
@@ -48,7 +48,7 @@ def odos_quote(input_token, output_token, amount):
         "slippageLimitPercent": 0.5,
     }
 
-    response = requests.post(ODOS_QUOTE_URL, json=payload, timeout=20)
+    response = requests.post(ODOS_QUOTE_URL, json=payload, timeout=7)
     data = response.json()
 
     if "outAmounts" not in data:

@@ -26,7 +26,7 @@ def oneinch_quote(input_token, output_token, amount):
         "Accept": "application/json",
     }
 
-    response = requests.get(ONEINCH_URL, params=params, headers=headers, timeout=20)
+    response = requests.get(ONEINCH_URL, params=params, headers=headers, timeout=7)
     data = response.json()
 
     if "dstAmount" not in data:

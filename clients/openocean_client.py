@@ -16,7 +16,7 @@ def openocean_quote(input_token, output_token, amount):
         "slippage": "0.5",
     }
 
-    response = requests.get(OPENOCEAN_URL, params=params, timeout=20)
+    response = requests.get(OPENOCEAN_URL, params=params, timeout=7)
 
     if response.status_code != 200:
         raise Exception(f"HTTP {response.status_code}: {response.text[:200]}")
